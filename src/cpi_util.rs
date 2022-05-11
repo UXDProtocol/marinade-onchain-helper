@@ -10,7 +10,7 @@ use anchor_lang::{
 pub fn invoke_signed<'info, T: Accounts<'info> + ToAccountInfos<'info> + ToAccountMetas, AnchorInstruction:InstructionData>(
     cpi_ctx: CpiContext<'_, '_, '_, 'info, T>,
     instruction_data: AnchorInstruction,
-) -> ProgramResult {
+) -> Result<()> {
     let ix = Instruction {
         program_id: *cpi_ctx.program.key,
         accounts: cpi_ctx.accounts.to_account_metas(None),
@@ -20,5 +20,5 @@ pub fn invoke_signed<'info, T: Accounts<'info> + ToAccountInfos<'info> + ToAccou
         &ix,
         &cpi_ctx.to_account_infos(),
         cpi_ctx.signer_seeds,
-    )
+    ).map_err(|e| e.into())
 }
