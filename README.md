@@ -1,3 +1,5 @@
+Forked marinade-onchain-helper with anchor upgraded. It's a way to interact with mariande for now until they release a anchor-independent sdk / or anchor upgrade on their side
+
 # Marinade Finance on-chain CPI helper
 
 This Rust lib will simplify integrating CPI calls by giving out the structure account and invoke signed function
